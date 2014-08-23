@@ -8,11 +8,20 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>Water Conservation</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	
+    
+    <!-- jQuery and Our JS -->
+	<script src="js/jquery.min.js"></script>
+    <script src="js/code.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            window.setInterval(per_year,10000);
+        });
+    </script>
 	
   </head>
 
@@ -33,16 +42,17 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Money <span class="badge" id="money">42</span></a></li>
-						<li><a href="#">Dirty Water <span class="badge" id="dirty_water">42</span></a></li>
-						<li><a href="#">Clean Water <span class="badge" id="clean_water">42</span></a></li>
+            <li><a href="#">Citizens <span class="badge" id="num_of_citizens">0</span></a></li>
+            <li><a href="#">Money <span class="badge" id="money">42</span></a></li>
+            <li><a href="#">Dirty Water <span class="badge" id="dirty_water">42</span></a></li>
+            <li><a href="#">Clean Water <span class="badge" id="clean_water">42</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
-      <div class="row">
+      <div class="row" id="content">
         <div class="col-sm-8">
           <ul class="list-group" id="activitylog">
             <li class="list-group-item">
@@ -83,7 +93,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
