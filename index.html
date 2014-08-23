@@ -25,7 +25,7 @@
 	
   </head>
 
-  <body>
+  <body onload="per_year()">
 
 	<div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -52,31 +52,75 @@
     </div>
 
     <div class="container">
+      <div class="alert alert-info" role="alert" id="alert" style="display:none;">
+      </div>
+    </div>
+    
+    <div class="container">
       <div class="row" id="content">
-        <div class="col-sm-8">
+        <div class="col-sm-4">
           <ul class="list-group" id="activitylog">
             <li class="list-group-item">
-              <h4 class="list-group-item-heading">List group item heading</h4>
-              <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-			</li>
+                <h4 class="list-group-item-heading">Water Treatment Plant</h4>
+                <p class="list-group-item-text">Set-up a water treatment plant</p>
+                <button type="button" class="btn btn-primary" onclick="action_WaterTreatment()">Go</button>
+            </li>
             <li class="list-group-item">
-			  <h4 class="list-group-item-heading">List group item heading</h4>
-              <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-			</li>
+                <h4 class="list-group-item-heading">Public Service Announcement</h4>
+                <p class="list-group-item-text">Public Service Announcement to save water</p>
+                <button type="button" class="btn btn-primary" onclick="action_PSA()">Go</button>
+            </li>
             <li class="list-group-item">
-			  <h4 class="list-group-item-heading">List group item heading</h4>
-              <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-			</li>
+                <h4 class="list-group-item-heading">Tax +</h4>
+                <p class="list-group-item-text">Increase the amount of Tax levied on water</p>
+                <button type="button" class="btn btn-primary" onclick="action_TaxIncrease()">Go</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Tax -</h4>
+                <p class="list-group-item-text">Decrease the amount of Tax levied on water</p>
+                <button type="button" class="btn btn-primary" onclick="action_TaxDecrease()">Go</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Rainwater Harvesting</h4>
+                <p class="list-group-item-text">Setting-up/Increasing emphasis on Rainwater harvesting.</p>
+                <button type="button" class="btn btn-primary" onclick="action_RWHIncrease()">Go</button>
+            </li>
           </ul>
         </div><!-- /.blog-main -->
+        
+        <div class="col-sm-4">
+          <ul class="list-group" id="optionallog">
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Industry</h4>
+                <p class="list-group-item-text">Set-up an industry?</p>
+                <button type="button" class="btn btn-success" onclick="action_Factory(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Factory(0)">No</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Festival</h4>
+                <p class="list-group-item-text">The citizens want to conduct a festival. Allow?</p>
+                <button type="button" class="btn btn-success" onclick="action_Festival(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Festival(0)">No</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Tree Plantation</h4>
+                <p class="list-group-item-text">Organize a tree-plantation drive?</p>
+                <button type="button" class="btn btn-success" onclick="action_Tree(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Tree(0)">No</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Tubewell</h4>
+                <p class="list-group-item-text">Construct a tube-well?</p>
+                <button type="button" class="btn btn-success" onclick="action_Tubewell(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Tubewell(0)">No</button>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Neighbour Aid</h4>
+                <p class="list-group-item-text">A neighbouring city wants water. Give?</p>
+                <button type="button" class="btn btn-success" onclick="action_Neighbour(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Neighbour(0)">No</button>
+            </li>
+          </ul>
+        </div>
 
         <div class="col-sm-3 col-sm-offset-1">
           <ul class="list-group" id="eventlog">
             <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
           </ul>
         </div><!-- /.blog-sidebar -->
 
