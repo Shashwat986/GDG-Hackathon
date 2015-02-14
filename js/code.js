@@ -21,13 +21,18 @@ var actions_txt = ["Add a new factory","Allow citizens to play with water","Plan
 var events = ["Tax", "Rain", "Fire"];
 var events_txt = ["Tax is levied on water","Unexpectedly heavy downpour","Fire Incidents"];
 
+function init()
+{
+    per_year();
+}
+
 function load()
-{    
+{
     // Display
-    $("#money").html(""+money);
-    $("#dirty_water").html(""+dirty_water);
-    $("#clean_water").html(""+clean_water);
-    $("#num_of_citizens").html(""+num_of_citizens);
+    $("#money")             .html("" + Math.round(money * 100) / 100);
+    $("#dirty_water")       .html("" + Math.round(dirty_water * 100) / 100);
+    $("#clean_water")       .html("" + Math.round(clean_water * 100) / 100);
+    $("#num_of_citizens")   .html("" + Math.round(num_of_citizens * 100) / 100);
 }
 
 function per_year()
@@ -104,7 +109,7 @@ function action_RWHIncrease()
     factor = (Math.random() * 0.3 + 0.1);
     clean_water_rate += 0.001 * rain * factor;
     
-    add_alert("You have encouraged "+factor*100+"% people to consider Rain Water Harvesting");
+    add_alert("You have encouraged " + Math.round(factor*100) + "% people to consider Rain Water Harvesting");
 }
 
 //---
@@ -160,10 +165,18 @@ function event_Draught()
 
 //---
 
-function add_alert(txt)
+function add_alert(txt,type)
 {
+    if (typeof type === "undefined")
+        type="info";
+    type = "alert-"+type
+    
     $("#alert").html(txt);
-    $("#alert").fadeIn(200).delay(1000).fadeOut(200);
+    $("#alert").removeClass().addClass("alert").addClass(type);
+    $("#alert").delay(2000).queue(function(n){
+        $(this).html("").removeClass(type);
+        n();
+    });
     load();
 }
 
@@ -177,8 +190,12 @@ function check_victory()
         lost = 1;
 }
     
-function add_action(title, txt="", url="#")
+function add_action(title, txt, url)
 {
+    if (typeof txt === "undefined")
+        txt = "";
+    if (typeof url === "undefined")
+        url = "#";
     $("#optionallog").prepend('<li class="list-group-item"><h4 class="list-group-item-heading">'+title+'</h4><p class="list-group-item-text">'+txt+'</p><button type="button" class="btn btn-primary" onclick="'+url+';$(this).parent().hide();">Go</button></li>');
     load();
 }

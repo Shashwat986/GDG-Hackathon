@@ -14,7 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
     <!-- jQuery and Our JS -->
-	<script src="js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/code.js"></script>
     
     <script type="text/javascript">
@@ -22,12 +22,12 @@
             window.setInterval(per_year,10000);
         });
     </script>
-	
+    
   </head>
 
-  <body onload="per_year()">
+  <body onload="init()">
 
-	<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,13 +52,9 @@
     </div>
 
     <div class="container">
-      <div class="alert alert-info" role="alert" id="alert" style="display:none;">
-      </div>
-    </div>
-    
-    <div class="container">
       <div class="row" id="content">
         <div class="col-sm-4">
+          <h3 class="text-center">Constant Options</h3>
           <ul class="list-group" id="activitylog">
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Water Treatment Plant</h4>
@@ -89,6 +85,7 @@
         </div><!-- /.blog-main -->
         
         <div class="col-sm-4">
+          <h3 class="text-center">Real-Time Options</h3>
           <ul class="list-group" id="optionallog">
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Industry</h4>
@@ -119,18 +116,23 @@
         </div>
 
         <div class="col-sm-3 col-sm-offset-1">
+          <h3 class="text-center">Log</h3>
+          <div class="alert" role="alert" id="alert"></div>
           <ul class="list-group" id="eventlog">
-            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">
+                Test
+            </li>
           </ul>
+          
         </div><!-- /.blog-sidebar -->
-
       </div><!-- /.row -->
-
     </div><!-- /.container -->
 
     <footer>
-	  <hr>
-      <p>Game made by Shashwat, Sriram, Shail, and Abhishek.</p>
+      <hr/>
+      <center>
+        <small>Game made by Shashwat, Sriram, Shail, and Abhishek, IIT Kanpur.</small>
+      </center>
     </footer>
 
 
