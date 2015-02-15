@@ -19,11 +19,9 @@
     <script src="js/actions.js"></script>
     <script src="js/code.js"></script>
     
-    <script type="text/javascript">
-        $(document).ready(function(){
-            window.setInterval(per_year,10000);
-        });
-    </script>
+    <noscript>
+        This game, kind of <strong>requires</strong> Javascript. It's been built on Javascript. Please enable it to get any kind of functionality out of this site.
+    </noscript>
     
   </head>
 
@@ -48,6 +46,7 @@
             <li><a href="#">Money <span class="badge" id="money">42</span></a></li>
             <li><a href="#">Dirty Water <span class="badge" id="dirty_water">42</span></a></li>
             <li><a href="#">Clean Water <span class="badge" id="clean_water">42</span></a></li>
+            <li class="active"><a href="#">Years <span class="badge" id="num_years">42</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,33 +57,8 @@
         <div class="col-sm-4">
           <h3 class="text-center">Constant Options</h3><hr/>
           <ul class="list-group" id="activitylog">
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Water Treatment Plant</h4>
-                <p class="list-group-item-text">Set-up a water treatment plant</p>
-                <button type="button" class="btn btn-primary" onclick="action_WaterTreatment()">Go</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Public Service Announcement</h4>
-                <p class="list-group-item-text">Public Service Announcement to save water</p>
-                <button type="button" class="btn btn-primary" onclick="action_PSA()">Go</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Tax +</h4>
-                <p class="list-group-item-text">Increase the amount of Tax levied on water</p>
-                <button type="button" class="btn btn-primary" onclick="action_TaxIncrease()">Go</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Tax -</h4>
-                <p class="list-group-item-text">Decrease the amount of Tax levied on water</p>
-                <button type="button" class="btn btn-primary" onclick="action_TaxDecrease()">Go</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Rainwater Harvesting</h4>
-                <p class="list-group-item-text">Setting-up/Increasing emphasis on Rainwater harvesting.</p>
-                <button type="button" class="btn btn-primary" onclick="action_RWH()">Go</button>
-            </li>
           </ul>
-        </div><!-- /.blog-main -->
+        </div>
         
         <div class="col-sm-4">
           <h3 class="text-center">Real-Time Options</h3><hr/>
@@ -119,12 +93,14 @@
 
         <div class="col-sm-3 col-sm-offset-1">
           <h3 class="text-center">Log</h3><hr/>
+	  <div class="col-sm-12" id="log_div" style="overflow-y:auto">
           <div class="alert" role="alert" id="alert"></div>
           <ul class="list-group" id="eventlog">
             <li class="list-group-item">
                 Test
             </li>
           </ul>
+	  </div>
           
         </div><!-- /.blog-sidebar -->
       </div><!-- /.row -->

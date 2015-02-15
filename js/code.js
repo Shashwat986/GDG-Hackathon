@@ -3,18 +3,10 @@ var intervalID;
 function init()
 {
 	per_year();
+	set_constant_options();
 	$(document).ready(function(){
 		intervalID = window.setInterval(per_year,10000);
 	});
-}
-
-function load()
-{
-    // Display
-    $("#money")             .html("" + Math.round(money * 100) / 100);
-    $("#dirty_water")       .html("" + Math.round(dirty_water * 100) / 100);
-    $("#clean_water")       .html("" + Math.round(clean_water * 100) / 100);
-    $("#num_of_citizens")   .html("" + Math.round(num_of_citizens * 100) / 100);
 }
 
 function per_year()
@@ -27,7 +19,8 @@ function per_year()
     
     clean_water += clean_water_rate;
     
-    load();
+    new_random_incidents();
+    change_display();
     
     check_victory();
     if (lost == 1)
@@ -37,17 +30,43 @@ function per_year()
     if (lost == -1)
     {
         $("#content").prepend('<div class="alert alert-success" role="alert"><strong>You Win!</strong> You survived 100 years! Congratulations!</div>');
+	window.clearInterval(intervalID);
     }
+
+    num_years += 1;
 }
     
-function temp()
+function change_display()
+{
+    $("#money")             .html("" + Math.round(money * 100) / 100);
+    $("#dirty_water")       .html("" + Math.round(dirty_water * 100) / 100);
+    $("#clean_water")       .html("" + Math.round(clean_water * 100) / 100);
+    $("#num_of_citizens")   .html("" + Math.round(num_of_citizens * 100) / 100);
+    $("#num_years")         .html("" + num_years);
+
+    $("#log_div").css("height",$("#activitylog").css("height"));
+}
+
+function set_constant_options()
+{
+	for (i = 0; i < persistent_actions.length; i++)
+	{
+		add_persistent_action(persistent_actions[i].title,
+			persistent_actions[i].text,
+			"action_"+persistent_actions[i].type);
+	}
+}
+
+function new_random_incidents()
 {
     // New random action
-    if (Math.random() < 0.5){
-        var val = Math.floor(Math.random() * actions.length);
-        action = actions[val].type;
-        txt = actions[val].text;
-        add_action(action,txt,"action_"+action+"()");
+    if (Math.random() < 0.4){
+        var val = Math.floor(Math.random() * temporal_actions.length);
+        action = temporal_actions[val].type;
+        txt = temporal_actions[val].text;
+	title = temporal_actions[val].title;
+        add_temporal_action(title,txt,"action_"+action+"()");
+	console.log(title);
     }
     
     // New random event
@@ -55,7 +74,9 @@ function temp()
         var val = Math.floor(Math.random() * events.length);
         evnt = events[val].type;
         txt = events[val].text;
-        add_event(evnt,txt,"event_"+evnt+"()");
+	title = events[val].title;
+        add_event(title,txt,"event_"+evnt+"()");
+	console.log(title);
     }
 }
 
@@ -71,7 +92,7 @@ function add_alert(txt,type)
         $(this).html("").removeClass(type);
         n();
     });
-    load();
+    change_display();
 }
 
 function check_victory()
@@ -85,20 +106,55 @@ function check_victory()
     if (num_years >= 100)
 	lost = -1;
 }
-    
-function add_action(title, txt, url)
+
+function add_persistent_action(title, txt, url)
 {
+    if (typeof title === "undefined")
+        title = "";
     if (typeof txt === "undefined")
         txt = "";
     if (typeof url === "undefined")
         url = "#";
-    $("#optionallog").prepend('<li class="list-group-item"><h4 class="list-group-item-heading">'+title+'</h4><p class="list-group-item-text">'+txt+'</p><button type="button" class="btn btn-primary" onclick="'+url+';$(this).parent().hide();">Go</button></li>');
-    load();
+    $("#activitylog").append('<li class="list-group-item">'
+		+ '<h4 class="list-group-item-heading">'
+		+ title + '</h4>'
+		+ '<p class="list-group-item-text">' + txt + '</p>'
+		+ '<button type="button" class="btn btn-primary" onclick="'
+		+ url + '();">Go</button>'
+	+ '</li>');
+    change_display();
+}
+   
+function add_temporal_action(title, txt, url)
+{
+    if (typeof title === "undefined")
+        title = "";
+    if (typeof txt === "undefined")
+        txt = "";
+    if (typeof url === "undefined")
+        url = "#";
+    // Need to make it temporal. Need to add timeout code.
+    
+    $("#optionallog").prepend('<li class="list-group-item">'
+		+ '<h4 class="list-group-item-heading">'+title+'</h4>'
+		+ '<p class="list-group-item-text">'+txt+'</p>'
+		+ '<button type="button" class="btn btn-success" onclick="'
+		+ url + '(1);$(this).parent().hide();">Yes</button>'
+		+ '<button type="button" class="btn btn-danger" onclick="'
+		+ url + '(0);$(this).parent().hide();">No</button>'
+	+ '</li>');
+    change_display();
 }
 
 function add_event(title, txt, url)
 {
+    if (typeof title === "undefined")
+        title = "";
+    if (typeof txt === "undefined")
+        txt = "";
+    if (typeof url === "undefined")
+        url = "";
     eval(url);
-    $("#eventlog").prepend('<li class="list-group-item"><b>'+title+'</b>: '+txt+'</li>');
-    load();
+    $("#eventlog").prepend('<li class="list-group-item"><strong>'+title+'</strong>: '+txt+'</li>');
+    change_display();
 }
