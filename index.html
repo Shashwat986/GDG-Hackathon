@@ -46,7 +46,7 @@
             <li><a href="#">Money <span class="badge" id="money">42</span></a></li>
             <li><a href="#">Dirty Water <span class="badge" id="dirty_water">42</span></a></li>
             <li><a href="#">Clean Water <span class="badge" id="clean_water">42</span></a></li>
-            <li class="active"><a href="#">Years <span class="badge" id="num_years">42</span></a></li>
+            <li id="time_toggler" class="alert-success progress-bar-striped"><a href="#" onclick="toggle_time()">Years <span class="badge" id="num_years">42</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -62,32 +62,7 @@
         
         <div class="col-sm-4">
           <h3 class="text-center">Real-Time Options</h3><hr/>
-          <ul class="list-group" id="optionallog">
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Industry</h4>
-                <p class="list-group-item-text">Set-up an industry?</p>
-                <button type="button" class="btn btn-success" onclick="action_Factory(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Factory(0)">No</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Festival</h4>
-                <p class="list-group-item-text">The citizens want to conduct a festival. Allow?</p>
-                <button type="button" class="btn btn-success" onclick="action_Festival(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Festival(0)">No</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Tree Plantation</h4>
-                <p class="list-group-item-text">Organize a tree-plantation drive?</p>
-                <button type="button" class="btn btn-success" onclick="action_Tree(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Tree(0)">No</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Tubewell</h4>
-                <p class="list-group-item-text">Construct a tube-well?</p>
-                <button type="button" class="btn btn-success" onclick="action_Tubewell(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Tubewell(0)">No</button>
-            </li>
-            <li class="list-group-item">
-                <h4 class="list-group-item-heading">Neighbour Aid</h4>
-                <p class="list-group-item-text">A neighbouring city wants water. Give?</p>
-                <button type="button" class="btn btn-success" onclick="action_Neighbour(1)">Yes</button><button type="button" class="btn btn-danger" onclick="action_Neighbour(0)">No</button>
-            </li>
+          <ul class="list-group" id="optionallog" style="overflow-y:auto">
           </ul>
         </div>
 
@@ -102,7 +77,7 @@
           </ul>
 	  </div>
           
-        </div><!-- /.blog-sidebar -->
+        </div>
       </div><!-- /.row -->
     </div><!-- /.container -->
 
