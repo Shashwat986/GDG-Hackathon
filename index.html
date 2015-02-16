@@ -12,16 +12,16 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+
+    <!-- Our CSS --> 
+    <link href="css/style.css" rel="stylesheet">
+
     <!-- jQuery and Our JS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/actions.js"></script>
     <script src="js/code.js"></script>
     
-    <noscript>
-        This game, kind of <strong>requires</strong> Javascript. It's been built on Javascript. Please enable it to get any kind of functionality out of this site.
-    </noscript>
     
   </head>
 
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Water Conservation</a>
+          <a class="navbar-brand" href="index.html">Water Conservation</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -51,6 +51,12 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+
+    <noscript>
+	<center>
+        <div class="alert alert-danger">This game, kind of <strong>requires</strong> Javascript. It's been built on Javascript. Please enable it to get any kind of functionality out of this site.</div>
+	</center>
+    </noscript>
 
     <div class="container">
       <div class="row" id="content">
@@ -71,9 +77,6 @@
 	  <div class="col-sm-12" id="log_div" style="overflow-y:auto">
           <div class="alert" role="alert" id="alert"></div>
           <ul class="list-group" id="eventlog">
-            <li class="list-group-item">
-                Test
-            </li>
           </ul>
 	  </div>
           

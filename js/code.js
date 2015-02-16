@@ -1,3 +1,7 @@
+var maxTime = 20;	// (seconds)
+var minTime = 8;	// (seconds)
+var yearTime = 20;	// (seconds)
+
 var intervalID;
 var temporalID;
 var temporal_timers = []
@@ -7,7 +11,7 @@ function init()
 	per_year();
 	set_constant_options();
 	$(document).ready(function(){
-		intervalID = window.setInterval(loader,2000);
+		intervalID = window.setInterval(loader,yearTime*200);	// 1000/5
 		temporalID = window.setInterval(timers,500);
 	});
 }
@@ -62,7 +66,7 @@ function per_year()
     check_victory();
     if (lost == 1)
     {
-        $("#content").html('<div class="alert alert-danger" role="alert"><strong>Sorry!</strong> You Lose.</div>');
+        $("#content").html('<div class="alert alert-danger" role="alert"><strong>Sorry!</strong> You Lose. <a href="index.html">Retry?</a> </div>');
 	window.clearInterval(intervalID);
     }
     if (lost == -1)
@@ -172,7 +176,7 @@ function add_temporal_action(title, txt, url)
     if (typeof url === "undefined")
         url = "#";
     // Need to make it temporal. Need to add timeout code.
-    t_time = Math.round(Math.random()*9 + 3);
+    t_time = Math.round(Math.random()*(maxTime-minTime) + minTime);
     t_id = "temporal_"+temporal_timers.length;
 
     temporal_timers.push({
