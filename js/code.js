@@ -6,6 +6,8 @@ var intervalID;
 var temporalID;
 var temporal_timers = []
 
+var lost = 0;
+
 function init()
 {
 	per_year();
@@ -23,6 +25,7 @@ function timers()
 		id = temporal_timers[i].id;
 		time = temporal_timers[i].time;
 		orig = temporal_timers[i].orig;
+		func = temporal_timers[i].func;
 		if (time < 0)
 			continue;
 		temporal_timers[i].time -= 0.5
@@ -31,13 +34,18 @@ function timers()
 		$(id).html(""+Math.round(time));
 		if (time < 0)
 		{
-			$(id).parent().parent().parent().parent().hide();
+			// Run when request isn't fulfilled.
+			eval(func+"(0)");
+			$(id).closest('li').hide();
 		}
 	}
 }
 
 function loader()
 {
+	if (lost != 0)
+		return;
+
 	if (Math.abs(num_years - Math.round(num_years)) < 0.1)
 	{
 		num_years = Math.round(num_years);
@@ -107,7 +115,7 @@ function new_random_incidents()
         txt = temporal_actions[val].text;
 	title = temporal_actions[val].title;
         add_temporal_action(title,txt,"action_"+action);
-	console.log(title);
+	//console.log(title);
     }
     
     // New random event
@@ -174,7 +182,7 @@ function add_temporal_action(title, txt, url)
     if (typeof txt === "undefined")
         txt = "";
     if (typeof url === "undefined")
-        url = "#";
+        url = "";
     // Need to make it temporal. Need to add timeout code.
     t_time = Math.round(Math.random()*(maxTime-minTime) + minTime);
     t_id = "temporal_"+temporal_timers.length;
@@ -182,7 +190,8 @@ function add_temporal_action(title, txt, url)
     temporal_timers.push({
 		id: "#"+t_id,
 		time: t_time,
-		orig: t_time
+		orig: t_time,
+		func: url
 	});
 
     $('<li class="list-group-item">'
@@ -191,10 +200,10 @@ function add_temporal_action(title, txt, url)
 		+ '<div class="row">'
 			+ '<div class="col-sm-2">'
 			+ '<button type="button" class="btn btn-success" onclick="'
-			+ url + '(1);$(this).parent().parent().parent().hide();">Yes</button>'
+			+ url + '(1);hide($(\'#' + t_id + '\'));">Yes</button>'
 			+ '</div><div class="col-sm-2">'
 			+ '<button type="button" class="btn btn-danger" onclick="'
-			+ url + '(0);$(this).parent().parent().parent().hide();">No</button>'
+			+ url + '(0);hide($(\'#' + t_id + '\'));">No</button>'
 			+ '</div>'
 			+ '<div class="col-sm-7 col-sm-offset-1">'
 			+ '<div class="progress">'
@@ -241,4 +250,15 @@ function toggle_time()
 		window.clearInterval(intervalID);
 		intervalID = -1;
 	}
+}
+
+function hide(node)
+{
+	for (i = 0 ; i < temporal_timers.length ; i++)
+	{
+		id = "#" + $(node).attr("id")
+		if (temporal_timers[i].id == id)
+			temporal_timers[i].time = -1;
+	}
+	$(node).closest('li').hide();
 }

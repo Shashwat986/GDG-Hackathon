@@ -11,6 +11,5 @@ var num_of_citizens = 1000; // 4000000
 var citizen_water_usage = 0.077;
 var citizen_happiness = 0.5;
 
-var lost = 0;
 var num_years = 0;
 
