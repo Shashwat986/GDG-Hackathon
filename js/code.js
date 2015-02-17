@@ -17,8 +17,6 @@ function init()
 		temporalID = window.setInterval(timers,500);
 	});
 	
-	// Initialize parameter values
-	money_rate = 0;
 }
 
 function timers()
@@ -121,7 +119,7 @@ function new_random_incidents()
 		txt = events[val].text;
 		title = events[val].title;
 		add_event(title,txt,"event_"+evnt);
-		console.log(title);
+		//console.log(title);
 	}
 }
 
