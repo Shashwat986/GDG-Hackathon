@@ -1,5 +1,6 @@
 var money = 0;
-var money_rate = 6000; // Tax @ 50 per person per month
+var money_rate;
+var tax = 6000
 var clean_water = 1000;
 var clean_water_rate = 0;
 var dirty_water = 7000000;  // kLD
